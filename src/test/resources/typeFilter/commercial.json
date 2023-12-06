@@ -1,0 +1,8 @@
+{
+  "clinic" : "clinic",
+  "bank" : "bank",
+  "retail" : "retail",
+  "building" : "building",
+  "mall" : "mall",
+  "office" : "office"
+}

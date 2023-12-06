@@ -1,0 +1,17 @@
+{
+  "servicedApartment" : "serviced apartment",
+  "duplex" : "duplex",
+  "triplex" : "triplex",
+  "chalet" : "chalet",
+  "familyHouse" : "family house",
+  "quattro" : "quattro",
+  "loft" : "loft",
+  "apartment" : "apartment",
+  "cabin" : "cabin",
+  "studio" : "studio",
+  "pentHouse" : "penthouse",
+  "townHouse" : "townhouse",
+  "twinHouse" : "twin house",
+  "standaloneVilla" : "standalone villa"
+
+}
