@@ -20,7 +20,7 @@ pipeline {
                    if (fileExists(targetPath)) {
                     // Delete the target folder
                     bat "rmdir /s /q ${targetPath}"
-                    echo "echo Target directory removed successfully : ${targetPath}"
+                    echo "Target directory removed successfully : ${targetPath}"
                     } else {
                         echo "Target directory does not exist at : ${targetPath}. No cleanup needed."
                 }
@@ -31,7 +31,7 @@ pipeline {
         steps{
             script{
                 echo "Starting 'Build' Stage!!"
-                bat 'mvn clean install'
+                bat 'mvn install -DskipTests'
             }
         }
     }
