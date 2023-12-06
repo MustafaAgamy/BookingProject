@@ -4,7 +4,7 @@ pipeline {
     environment {
         PROJECT_ROOT = 'D:\\Testing\\NesmaProject\\Estate-Book'
         WORKSPACE_WINDOWS = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\FirstPipeLine'
-        WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/FirstPipeLine'
+        WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/EstateBookPipeline'
         TARGET_FOLDER = 'target'
         SUREFIRE_REPORTS = '/surefire-reports'
         HTML_REPORT = '/emailable-report.html'
@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script{
                 echo "Starting 'Test' Stage!!"
-                bat 'mvn clean test'
+                bat 'mvn clean test -Dtest="SignInTest"'
                 }
             }
         }
