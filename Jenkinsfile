@@ -50,10 +50,10 @@ pipeline {
                 script {
                     echo "Starting 'Test' Stage!!"
 //                    def testsToRun = ["SignInTest"]
-                    bat 'mvn clean test -Dtest="SignInTest"'
 //                    for (test in testsToRun) {
 //                        bat "mvn clean test -Dtest=${test}"
 //                    }
+                    bat 'mvn clean test -Dtest="SignInTest"'
                 }
             }
         }
@@ -69,6 +69,7 @@ pipeline {
                                 results          : [[path: 'allure-results']]
                         ])
                     }
+                    bat "${allure} generate --single-file allure-results --clean"
                 }
             }
         }
