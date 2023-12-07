@@ -5,9 +5,13 @@ pipeline {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '10', daysToKeepStr: '', numToKeepStr: '10')
     }
 
+    tools {
+        // Use the name specified in the Global Tool Configuration
+       allure 'ALLURE_HOME'
+    }
     environment {
         PROJECT_ROOT = 'D:\\Testing\\NesmaProject\\Estate-Book'
-        WORKSPACE_WINDOWS = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\FirstPipeLine'
+        WORKSPACE_WINDOWS = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\EstateBookPipeline'
         WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/EstateBookPipeline'
         PATH_TO_ALLURE_REPORT = "${WORKSPACE}/allure-report"
         TARGET_FOLDER = 'target'
@@ -53,7 +57,7 @@ pipeline {
             steps {
                 script{
                     echo "Starting 'Generate Allure Report' Stage!!"
-                    bat 'allure generate --single-file allure-results --clean'
+                    bat  "${allure} generate --single-file allure-results --clean"
                 }
             }
         }
