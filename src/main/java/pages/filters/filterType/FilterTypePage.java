@@ -45,12 +45,7 @@ public class FilterTypePage {
          return this;
      }
 
-    public FilterTypePage filterTypesDynamicLocatorsDemo(int filterTypeOption) {
-        By TypeFilterOptions =
-                By.xpath("//ul[contains(@class,'grid-cols-2 gap-4')]//li[contains(@class,'text-xs')][" + filterTypeOption + "]");
-        CustomMethods.findElementPresence(driver, TypeFilterOptions).click();
-        return this;
-    }
+
     public FilterTypePage pickResidentialTypeFilterOption(FilterTypeEnumMaps.ResidentialTypes typeFilterOption){
         int filterOptionIndex = FilterTypeEnumMaps.RESIDENTIAL_TYPES_MAP.get(typeFilterOption);
         filterTypesDynamicLocators(filterOptionIndex);

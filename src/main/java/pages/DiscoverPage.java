@@ -46,8 +46,8 @@ public class DiscoverPage {
         CustomMethods.findElementPresence(driver, filterByButton).click();
         return new FilterByPage(driver);
     }
-    private DiscoverPage filtersDynamicLocators(int filterNumber){
-        CustomMethods.findDuplicationIndex(driver, expandFilterButtons,filterNumber).click();
+    private DiscoverPage filtersDynamicLocators(int filterIndex){
+        CustomMethods.findDuplicationIndex(driver, expandFilterButtons,filterIndex).click();
        return this;
     }
 
@@ -58,7 +58,6 @@ public class DiscoverPage {
             case AREA -> filtersDynamicLocators(1);
             case BEDS_BATHS -> filtersDynamicLocators(2);
             case PRICE -> filtersDynamicLocators(3);
-
         }
         return this;
     }

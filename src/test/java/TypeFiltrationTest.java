@@ -4,11 +4,11 @@ import pages.filters.filterType.FilterTypeEnumMaps;
 import utils.ReadJSON;
 
 public class TypeFiltrationTest extends TestBase{
-    ReadJSON jsonFile;
+    private ReadJSON jsonFile;
     private final String COMMERCIAL_FILE = "typeFilter/commercial.json";
     private final String RESIDENTIAL_FILE = "typeFilter/residential.json";
     @Test
-    public  void testOfTypeFilterEnumResidential() {
+    public void testOfTypeResidential() {
         jsonFile = new ReadJSON(RESIDENTIAL_FILE);
         homePage.clickDiscoverBtn().visitTypeFilter()
                 .pickResidentialTypeFilterOption(FilterTypeEnumMaps.ResidentialTypes.SERVICED_APARTMENT)
@@ -23,7 +23,7 @@ public class TypeFiltrationTest extends TestBase{
     }
 
     @Test
-    public void testOfTypeFilterEnumCommercial(){
+    public void testOfTypeCommercial(){
         jsonFile = new ReadJSON(COMMERCIAL_FILE);
 
         homePage.clickDiscoverBtn().visitTypeFilter()

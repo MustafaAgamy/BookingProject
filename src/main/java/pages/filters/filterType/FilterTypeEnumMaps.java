@@ -11,8 +11,8 @@ public class FilterTypeEnumMaps {
         CABIN, STUDIO, DUPLEX, PENTHOUSE, TOWNHOUSE, TWIN_HOUSE, STANDALONE_VILLA
     }
 
-    public enum CommercialTypes{
-        CLINIC, BANK, RETAIL, BUILDING, MALL, OFFICE;
+    public enum CommercialTypes {
+        CLINIC, BANK, RETAIL, BUILDING, MALL, OFFICE
     }
 
     protected static final EnumMap<ResidentialTypes,Integer> RESIDENTIAL_TYPES_MAP = new EnumMap<>(ResidentialTypes.class);
