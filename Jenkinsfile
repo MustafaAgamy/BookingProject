@@ -8,9 +8,9 @@ pipeline {
     environment {
         PROJECT_ROOT = 'D:\\Testing\\NesmaProject\\Estate-Book'
         WORKSPACE_WINDOWS = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\EstateBookPipeline'
-//        WORKSPACE = "${env.WORKSPACE}"
         WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/EstateBookPipeline'
         ALLURE_REPORT = "allure-report/"
+        ALLURE_REPORT_HTML = "index.html"
         ALLURE_RESULTS = "allure-results"
         TARGET_FOLDER = 'target'
         SUREFIRE_REPORTS = '/surefire-reports'
@@ -88,6 +88,7 @@ pipeline {
                         emailext(
                                 subject: "Allure Results",
                                 body: "Please find the attached test results.",
+                                readFile("${ALLURE_REPORT}${ALLURE_REPORT_HTML}"),
                                 to: "${EMAIL_RECIPIENT}",
                                 mimeType: 'text/html',
                                 attachmentsPattern: "${attachmentPath}"
