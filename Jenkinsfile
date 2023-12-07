@@ -83,19 +83,23 @@ pipeline {
                 script {
                     echo "Starting 'Mail Distribution' Stage!!"
                     bat "C:/Users/Agami/scoop/apps/allure/2.25.0/bin/allure.bat generate --single-file allure-results --clean"
-                    def attachmentPath = "${ALLURE_REPORT}"
+                    def allureAttachment = "${ALLURE_REPORT}"
                     def allureReportPath = "${ALLURE_REPORT}${ALLURE_REPORT_HTML}"
                     def allureReportContent = readFile(file: allureReportPath).trim()
-                    if (fileExists(attachmentPath)) {
+                    def testNGAttachment = "${TARGET_FOLDER}${SUREFIRE_REPORTS}${HTML_REPORT}"
+                    def testNGReportPath = "${TARGET_FOLDER}${SUREFIRE_REPORTS}"
+                    def testNGReportContent = readFile(file: testNGReportPath)
+
+                    if (fileExists(allureAttachment) || fileExists(testNGAttachment)) {
                         emailext(
                                 subject: "Allure Results",
-                                body: "Please find the attached test results. \n\n${allureReportContent}",
+                                body: "Please find the attached test results. \n\n${testNGReportContent}",
                                 to: "${EMAIL_RECIPIENT}",
                                 mimeType: 'text/html',
-                                attachmentsPattern: "${attachmentPath}"
+                                attachmentsPattern: "${allureAttachment},${testNGAttachment}"
                         )
                     } else {
-                        echo "File doesn't exist at: ${attachmentPath}"
+                        echo "File doesn't exist at: ${allureAttachment},${testNGAttachment}"
                     }
                 }
             }
