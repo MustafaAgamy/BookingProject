@@ -7,7 +7,7 @@ pipeline {
 
     tools {
         // Use the name specified in the Global Tool Configuration
-        allure '$ C:\\Users\\Agami\\scoop\\apps\\allure\\2.25.0\\bin\\allure.bat'
+        allure 'ALLURE_HOME'
     }
     environment {
         PROJECT_ROOT = 'D:\\Testing\\NesmaProject\\Estate-Book'
