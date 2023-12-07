@@ -12,7 +12,8 @@ pipeline {
     environment {
         PROJECT_ROOT = 'D:\\Testing\\NesmaProject\\Estate-Book'
         WORKSPACE_WINDOWS = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\EstateBookPipeline'
-        WORKSPACE = "${env.WORKSPACE}"
+//        WORKSPACE = "${env.WORKSPACE}"
+        WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/EstateBookPipeline'
         PATH_TO_ALLURE_REPORT = "${WORKSPACE}/allure-report"
         TARGET_FOLDER = 'target'
         SUREFIRE_REPORTS = '/surefire-reports'
@@ -75,17 +76,16 @@ pipeline {
         stage('Mail Distribution') {
             steps {
                 script {
-                    bat 'zip -r allure-report.zip allure-report'
                     echo "Starting 'Mail Distribution' Stage!!"
+                    bat 'allure generate --single-file allure-results --clean'
                     def attachmentPath = "${PATH_TO_ALLURE_REPORT}"
-                    if (fileExists('allure-report.zip')) {
+                    if (fileExists(attachmentPath)) {
                         emailext(
                                 subject: "Allure Results",
                                 body: "Please find the attached test results.",
                                 to: "${EMAIL_RECIPIENT}",
                                 mimeType: 'text/html',
-
-                                attachmentsPattern: 'allure-report.zip'
+                                attachmentsPattern: "${attachmentPath}"
                         )
                     } else {
                         echo "File doesn't exist at: 'allure-report.zip'"
