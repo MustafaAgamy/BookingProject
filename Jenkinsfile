@@ -14,7 +14,7 @@ pipeline {
         WORKSPACE_WINDOWS = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\EstateBookPipeline'
 //        WORKSPACE = "${env.WORKSPACE}"
         WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/EstateBookPipeline'
-        PATH_TO_ALLURE_REPORT = "${WORKSPACE}/allure-report/"
+        PATH_TO_ALLURE_REPORT = "allure-report/"
         TARGET_FOLDER = 'target'
         SUREFIRE_REPORTS = '/surefire-reports'
         HTML_REPORT = '/emailable-report.html'
