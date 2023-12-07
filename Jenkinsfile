@@ -84,11 +84,12 @@ pipeline {
                     echo "Starting 'Mail Distribution' Stage!!"
                     bat "C:/Users/Agami/scoop/apps/allure/2.25.0/bin/allure.bat generate --single-file allure-results --clean"
                     def attachmentPath = "${ALLURE_REPORT}"
+                    def allureReportPath = "${ALLURE_REPORT}${ALLURE_REPORT_HTML}"
+                    def allureReportContent = readFile(file: allureReportPath).trim()
                     if (fileExists(attachmentPath)) {
                         emailext(
                                 subject: "Allure Results",
-                                body: "Please find the attached test results.",
-                                readFile("${ALLURE_REPORT}${ALLURE_REPORT_HTML}"),
+                                body: "Please find the attached test results. \n\n${allureReportContent}",
                                 to: "${EMAIL_RECIPIENT}",
                                 mimeType: 'text/html',
                                 attachmentsPattern: "${attachmentPath}"
