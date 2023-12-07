@@ -5,16 +5,13 @@ pipeline {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '10', daysToKeepStr: '', numToKeepStr: '10')
     }
 
-    tools {
-        // Use the name specified in the Global Tool Configuration
-        allure 'ALLURE_HOME'
-    }
     environment {
         PROJECT_ROOT = 'D:\\Testing\\NesmaProject\\Estate-Book'
         WORKSPACE_WINDOWS = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\EstateBookPipeline'
 //        WORKSPACE = "${env.WORKSPACE}"
         WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/EstateBookPipeline'
-        PATH_TO_ALLURE_REPORT = "allure-report/"
+        ALLURE_REPORT = "allure-report/"
+        ALLURE_RESULTS = "allure-results"
         TARGET_FOLDER = 'target'
         SUREFIRE_REPORTS = '/surefire-reports'
         HTML_REPORT = '/emailable-report.html'
@@ -34,6 +31,14 @@ pipeline {
                         echo "Target directory removed successfully : ${targetPath}"
                     } else {
                         echo "Target directory does not exist at : ${targetPath}. No cleanup needed."
+                    }
+                    def allurePath = "${WORKSPACE_WINDOWS}\\${ALLURE_RESULTS}"
+                    if (fileExists(allurePath)) {
+                        // Delete the target folder
+                        bat "rmdir /s /q ${allurePath}"
+                        echo "Allure-results directory removed successfully : ${allurePath}"
+                    } else {
+                        echo "Allure-results directory does not exist at : ${allurePath}. No cleanup needed."
                     }
                 }
             }
@@ -78,7 +83,7 @@ pipeline {
                 script {
                     echo "Starting 'Mail Distribution' Stage!!"
                     bat "C:/Users/Agami/scoop/apps/allure/2.25.0/bin/allure.bat generate --single-file allure-results --clean"
-                    def attachmentPath = "${PATH_TO_ALLURE_REPORT}"
+                    def attachmentPath = "${ALLURE_REPORT}"
                     if (fileExists(attachmentPath)) {
                         emailext(
                                 subject: "Allure Results",
