@@ -77,7 +77,7 @@ pipeline {
             steps {
                 script {
                     echo "Starting 'Mail Distribution' Stage!!"
-                    bat "C:\\Users\\Agami\\scoop\\apps\\allure\\2.25.0\\bin\\allure.bat generate --single-file allure-results --clean"
+                    bat "C:/Users/Agami/scoop/apps/allure/2.25.0/bin/allure.bat generate --single-file allure-results --clean"
                     def attachmentPath = "${PATH_TO_ALLURE_REPORT}"
                     if (fileExists(attachmentPath)) {
                         emailext(
