@@ -49,10 +49,11 @@ pipeline {
             steps {
                 script {
                     echo "Starting 'Test' Stage!!"
-                    def testsToRun = ["SignInTest"]
-                    for (test in testsToRun) {
-                        bat "mvn clean test -Dtest=${test}"
-                    }
+//                    def testsToRun = ["SignInTest"]
+                    bat 'mvn clean test -Dtest="SignInTest"'
+//                    for (test in testsToRun) {
+//                        bat "mvn clean test -Dtest=${test}"
+//                    }
                 }
             }
         }
