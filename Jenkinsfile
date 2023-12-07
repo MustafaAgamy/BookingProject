@@ -29,7 +29,7 @@ pipeline {
                     def targetPath = "${WORKSPACE_WINDOWS}\\${TARGET_FOLDER}"
                     if (fileExists(targetPath)) {
                         // Delete the target folder
-                        batSh "rmdir /s /q ${targetPath}"
+                        bat "rmdir /s /q ${targetPath}"
                         echo "Target directory removed successfully : ${targetPath}"
                     } else {
                         echo "Target directory does not exist at : ${targetPath}. No cleanup needed."
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     echo "Starting 'Build' Stage!!"
-                    batSh 'mvn install -DskipTests'
+                    bat 'mvn install -DskipTests'
                 }
             }
         }
@@ -51,7 +51,7 @@ pipeline {
                     echo "Starting 'Test' Stage!!"
                     def testsToRun = ["SignInTest"]
                     for (test in testsToRun) {
-                        batSh "mvn clean test -Dtest=${test}"
+                        bat "mvn clean test -Dtest=${test}"
                     }
                 }
             }
