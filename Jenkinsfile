@@ -9,6 +9,7 @@ pipeline {
         PROJECT_ROOT = 'D:\\Testing\\NesmaProject\\Estate-Book'
         WORKSPACE_WINDOWS = 'C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\FirstPipeLine'
         WORKSPACE = 'C:/ProgramData/Jenkins/.jenkins/workspace/EstateBookPipeline'
+        PATH_TO_ALLURE_REPORT = "${WORKSPACE}/allure-report"
         TARGET_FOLDER = 'target'
         SUREFIRE_REPORTS = '/surefire-reports'
         HTML_REPORT = '/emailable-report.html'
@@ -47,11 +48,20 @@ pipeline {
                 }
             }
         }
+
+        stage('Generate Allure Report') {
+            steps {
+                script{
+                    echo "Starting 'Generate Allure Report' Stage!!"
+                    bat 'allure generate --single-file allure-results --clean'
+                }
+            }
+        }
         stage('Mail Distribution') {
             steps {
                 script {
                   echo "Starting 'Mail Distribution' Stage!!"
-                  def attachmentPath = "${TARGET_FOLDER}${SUREFIRE_REPORTS}${HTML_REPORT}"
+                  def attachmentPath = "${PATH_TO_ALLURE_REPORT}"
                     if(fileExists(attachmentPath)){
                          echo "File exists at: ${attachmentPath}"
                     } else {
