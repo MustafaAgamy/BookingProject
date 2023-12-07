@@ -7,7 +7,7 @@ pipeline {
 
     tools {
         // Use the name specified in the Global Tool Configuration
-        allure 'ALLURE_HOME'
+        allure '$ C:\\Users\\Agami\\scoop\\apps\\allure\\2.25.0\\bin\\allure.bat'
     }
     environment {
         PROJECT_ROOT = 'D:\\Testing\\NesmaProject\\Estate-Book'
@@ -77,7 +77,7 @@ pipeline {
             steps {
                 script {
                     echo "Starting 'Mail Distribution' Stage!!"
-                    bat 'allure generate --single-file allure-results --clean'
+                    bat "${allure} generate --single-file allure-results --clean"
                     def attachmentPath = "${PATH_TO_ALLURE_REPORT}"
                     if (fileExists(attachmentPath)) {
                         emailext(
