@@ -85,10 +85,9 @@ pipeline {
                     bat "C:/Users/Agami/scoop/apps/allure/2.25.0/bin/allure.bat generate --single-file allure-results --clean"
                     def allureAttachment = "${ALLURE_REPORT}"
                     def allureReportPath = "${ALLURE_REPORT}${ALLURE_REPORT_HTML}"
-                    def allureReportContent = readFile(file: allureReportPath).trim()
                     def testNGAttachment = "${TARGET_FOLDER}${SUREFIRE_REPORTS}${HTML_REPORT}"
                     def testNGReportPath = "${TARGET_FOLDER}${SUREFIRE_REPORTS}"
-                    def testNGReportContent = readFile(file: testNGReportPath)
+                    def testNGReportContent = readFile(file: testNGAttachment)
 
                     if (fileExists(allureAttachment) || fileExists(testNGAttachment)) {
                         emailext(
