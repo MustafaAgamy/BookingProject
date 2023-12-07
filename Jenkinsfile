@@ -69,30 +69,27 @@ pipeline {
                                 results          : [[path: 'allure-results']]
                         ])
                     }
-                    bat "${allure} generate --single-file allure-results --clean"
                 }
             }
         }
         stage('Mail Distribution') {
             steps {
                 script {
+                    bat 'zip -r allure-report.zip allure-report'
                     echo "Starting 'Mail Distribution' Stage!!"
                     def attachmentPath = "${PATH_TO_ALLURE_REPORT}"
-                    if (fileExists(attachmentPath)) {
-                        echo "File exists at: ${attachmentPath}"
-                    } else {
-                        echo "File doesn't exist at: ${attachmentPath}"
-                    }
-                    // Attach the HTML file and send email
-                    def htmlReport = readFile("${attachmentPath}")
-                    emailext(
-                            subject: "Test Results",
-                            body: "Please find the attached test results.\n\n ${htmlReport}",
-                            to: "${EMAIL_RECIPIENT}",
-                            mimeType: 'text/html',
+                    if (fileExists('allure-report.zip')) {
+                        emailext(
+                                subject: "Allure Results",
+                                body: "Please find the attached test results.",
+                                to: "${EMAIL_RECIPIENT}",
+                                mimeType: 'text/html',
 
-                            attachmentsPattern: "${attachmentPath}"
-                    )
+                                attachmentsPattern: 'allure-report.zip'
+                        )
+                    } else {
+                        echo "File doesn't exist at: 'allure-report.zip'"
+                    }
                 }
             }
         }
