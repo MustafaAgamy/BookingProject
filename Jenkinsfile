@@ -56,7 +56,7 @@ pipeline {
                 script {
                     echo "Starting 'Test' Stage!!"
                     def testsToRun = ["SignInTest", "TypeFiltrationTest"]
-                    testsToRun.forEach {
+                    testsToRun.each {
                         test -> bat 'mvn clean test -Dtest=\"$test\"'
                     }
 //                    bat 'mvn clean test -Dtest="SignInTest"'
