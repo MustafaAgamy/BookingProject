@@ -56,7 +56,7 @@ pipeline {
                 script {
                     echo "Starting 'Test' Stage!!"
                     def testsToRun = ["SignInTest", "TypeFiltrationTest"]
-                    catchError(buildResult: 'FAILURE', stageResults: 'FAILURE') {
+                    catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                         testsToRun.each {
                             test ->
                                 bat "mvn clean test -Dtest=\"${test}\""
