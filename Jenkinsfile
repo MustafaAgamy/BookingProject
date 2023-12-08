@@ -55,11 +55,11 @@ pipeline {
             steps {
                 script {
                     echo "Starting 'Test' Stage!!"
-//                    def testsToRun = ["SignInTest"]
-//                    for (test in testsToRun) {
-//                        bat "mvn clean test -Dtest=${test}"
-//                    }
-                    bat 'mvn clean test -Dtest="SignInTest"'
+                    def testsToRun = ["SignInTest", "TypeFiltrationTest"]
+                    testsToRun.forEach {
+                        test -> bat 'mvn clean test -Dtest=\"$test\"'
+                    }
+//                    bat 'mvn clean test -Dtest="SignInTest"'
                 }
             }
         }
@@ -86,7 +86,6 @@ pipeline {
                     def allureAttachment = "${ALLURE_REPORT}"
                     def allureReportPath = "${ALLURE_REPORT}${ALLURE_REPORT_HTML}"
                     def testNGAttachment = "${TARGET_FOLDER}${SUREFIRE_REPORTS}${HTML_REPORT}"
-                    def testNGReportPath = "${TARGET_FOLDER}${SUREFIRE_REPORTS}"
                     def testNGReportContent = readFile(file: testNGAttachment)
 
                     if (fileExists(allureAttachment) || fileExists(testNGAttachment)) {
