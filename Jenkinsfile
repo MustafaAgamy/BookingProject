@@ -63,6 +63,7 @@ pipeline {
                 }
             }
         }
+    }
         stage('Generate Allure Report') {
             steps {
                 script {
@@ -78,29 +79,28 @@ pipeline {
                 }
             }
         }
-        post {
-            always {
-                stage('Mail Distribution') {
-                    steps {
-                        script {
-                            echo "Starting 'Mail Distribution' Stage!!"
-                            bat "C:/Users/Agami/scoop/apps/allure/2.25.0/bin/allure.bat generate --single-file allure-results --clean"
-                            def allureAttachment = "${ALLURE_REPORT}"
-                            def allureReportPath = "${ALLURE_REPORT}${ALLURE_REPORT_HTML}"
-                            def testNGAttachment = "${TARGET_FOLDER}${SUREFIRE_REPORTS}${HTML_REPORT}"
-                            def testNGReportContent = readFile(file: testNGAttachment)
+    post {
+        always {
+            stage('Mail Distribution') {
+                steps {
+                    script {
+                        echo "Starting 'Mail Distribution' Stage!!"
+                        bat "C:/Users/Agami/scoop/apps/allure/2.25.0/bin/allure.bat generate --single-file allure-results --clean"
+                        def allureAttachment = "${ALLURE_REPORT}"
+                        def allureReportPath = "${ALLURE_REPORT}${ALLURE_REPORT_HTML}"
+                        def testNGAttachment = "${TARGET_FOLDER}${SUREFIRE_REPORTS}${HTML_REPORT}"
+                        def testNGReportContent = readFile(file: testNGAttachment)
 
-                            if (fileExists(allureAttachment) || fileExists(testNGAttachment)) {
-                                emailext(
-                                        subject: "Allure Results",
-                                        body: "Please find the attached test results. \n\n${testNGReportContent}",
-                                        to: "${EMAIL_RECIPIENT}",
-                                        mimeType: 'text/html',
-                                        attachmentsPattern: "${allureAttachment},${testNGAttachment}"
-                                )
-                            } else {
-                                echo "File doesn't exist at: ${allureAttachment},${testNGAttachment}"
-                            }
+                        if (fileExists(allureAttachment) || fileExists(testNGAttachment)) {
+                            emailext(
+                                    subject: "Allure Results",
+                                    body: "Please find the attached test results. \n\n${testNGReportContent}",
+                                    to: "${EMAIL_RECIPIENT}",
+                                    mimeType: 'text/html',
+                                    attachmentsPattern: "${allureAttachment},${testNGAttachment}"
+                            )
+                        } else {
+                            echo "File doesn't exist at: ${allureAttachment},${testNGAttachment}"
                         }
                     }
                 }
@@ -108,4 +108,5 @@ pipeline {
         }
     }
 }
+
 
