@@ -80,9 +80,7 @@ pipeline {
                 }
             }
         }
-        post{
 
-        }
         stage('Mail Distribution') {
             steps {
                 script {
