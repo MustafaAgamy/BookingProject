@@ -83,7 +83,7 @@
             <version>3.11.0</version>
             <configuration>
                 <encoding>${project.build.sourceEncoding}</encoding>
-                <release>21</release>
+                <release>19</release>
             </configuration>
         </plugin>
     </plugins>
