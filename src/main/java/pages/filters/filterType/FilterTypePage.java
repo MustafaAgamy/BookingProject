@@ -1,5 +1,6 @@
 package pages.filters.filterType;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.DiscoverPage;
@@ -27,11 +28,14 @@ public class FilterTypePage {
 
         return new ResultsPage(driver);
     }
+
+    @Step
     public ResultsPage applyFilter() {
         CustomMethods.findElementPresence(driver, applyTypeFilterBtn).click();
         return new ResultsPage(driver);
     }
 
+    @Step
     public FilterTypePage clickCommercial() {
         CustomMethods.findElementPresence(driver, commercialTypeBtn).click();
 
@@ -45,12 +49,14 @@ public class FilterTypePage {
          return this;
      }
 
-
+    @Step
     public FilterTypePage pickResidentialTypeFilterOption(FilterTypeEnumMaps.ResidentialTypes typeFilterOption){
         int filterOptionIndex = FilterTypeEnumMaps.RESIDENTIAL_TYPES_MAP.get(typeFilterOption);
         filterTypesDynamicLocators(filterOptionIndex);
         return this;
     }
+
+    @Step
     public FilterTypePage pickCommercialTypeFilterOption(FilterTypeEnumMaps.CommercialTypes typeFilterOption){
         int filterOptionIndex = FilterTypeEnumMaps.COMMERCIAL_TYPES_MAP.get(typeFilterOption);
         filterTypesDynamicLocators(filterOptionIndex);

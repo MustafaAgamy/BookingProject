@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.developers.DevelopersPage;
@@ -21,6 +22,7 @@ public class HomePage {
     private final By developersPageBtn = By.xpath("//a[@href='/developers']");
     private final By signInBtn = By.xpath("//button[contains(@class,'ms-3.5')]");
 
+    @Step
     public DiscoverPage clickDiscoverBtn(){
         CustomMethods.findElementPresence(driver, discoverPageBtn).click();
         try {
@@ -41,6 +43,7 @@ public class HomePage {
         return new DevelopersPage(driver);
     }
 
+    @Step
     public SignInPage clickSignInBtn(){
         CustomMethods.findElementPresence(driver, signInBtn).click();
 

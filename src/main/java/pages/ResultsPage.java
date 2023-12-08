@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,7 +30,7 @@ public class ResultsPage {
     private final By installmentLabelFields = By.xpath("//p[contains(@class,'text-medium-gray')]");
 
 
-
+    @Step
     public ResultsPage waitForUrlToChange(){
         CustomMethods.waitForUrlToChange(driver);
         return this;
@@ -94,6 +95,7 @@ public class ResultsPage {
         return checkEveryResultFilterApplied(driver, areaLabelFields);
     }
 
+    @Step
     public List<String> checkTypeFilterApplied() { return checkEveryResultFilterApplied(driver, typeLabelFields);}
 
 

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import pages.filters.filterArea.FilterAreaPage;
 import pages.filters.filterBedsAndBaths.FilterBedsBathsPage;
@@ -23,6 +24,7 @@ public class DiscoverPage {
     private final By expandFilterButtons = By.xpath("//button[contains(@class,'rounded-md p-4')]");
     private final By filterByButton = By.xpath("//button[contains(@class,'relative inline-flex appearance')]");
 
+    @Step
     public FilterTypePage visitTypeFilter(){
         visitFilterPage(Filters.TYPE);
         return new FilterTypePage(driver);

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.CustomMethods;
@@ -16,7 +17,7 @@ public class SignInPage {
     private final By passwordField = By.id("password");
     private final By confirmSignInBtn = By.xpath("//button[@type='submit']");
 
-
+    @Step
     public SignInPage login(String email, String password){
         CustomMethods.findElementPresence(driver, emailField).sendKeys(email);
         CustomMethods.findElementPresence(driver, passwordField).sendKeys(password);
@@ -25,6 +26,7 @@ public class SignInPage {
         return this;
     }
 
+    @Step
     public String getSuccessfulLoginMsg(){
 
         return CustomMethods.waitForElementTextToLoad(driver, successfulLoginMsg).getText();
