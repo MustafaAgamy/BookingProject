@@ -59,8 +59,8 @@ pipeline {
                     catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                         testsToRun.each {
                             test ->
-                                bat "mvn clean test -Dtest=\"${test}\""
                                 echo "Starting test ${test}"
+                                bat "mvn clean test -Dtest=\"${test}\""
                         }
                     }
 //                    bat 'mvn clean test -Dtest="SignInTest"'
