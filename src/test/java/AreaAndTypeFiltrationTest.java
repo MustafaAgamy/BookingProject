@@ -26,8 +26,8 @@ public class AreaAndTypeFiltrationTest extends TestBase{
                 .setMinAndMaxAreaAndApply("200","500")
                 .waitForUrlToChange()
                 .checkAreaFilterApplied()
-                .parallelStream().forEach(resultText -> Assert.assertTrue( 200 <= Integer.parseInt(resultText.substring(0, 3))
-                                && Integer.parseInt(resultText.substring(0, 3)) <= 500
-                        ,"Expected 'result to be in between 200 & 500', but found: " + Integer.parseInt(resultText.substring(0, 3))));;
+                .parallelStream().forEach(resultText -> Assert.assertTrue( 200 <= resultText
+                                && resultText <= 500
+                        ,"Expected 'result to be in between 200 & 500', but found: " + resultText));;
     }
 }

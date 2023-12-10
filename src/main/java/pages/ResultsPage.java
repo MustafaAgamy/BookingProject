@@ -8,7 +8,6 @@ import utils.CustomMethods;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +20,7 @@ public class ResultsPage {
     }
 
     private final By typeLabelFields = By.xpath("//p[@class='text-primary-green']");
-    private final By areaLabelFields = By.xpath("//p[@class='space-x-1']");
+    private final By areaLabelFields = By.xpath("//p[@class='space-x-1']//span[1]");
     private final By startingFromLabelFields = By.xpath("//h2[contains(@class, 'sp')]");
     private final By bedsLabelFields = By.xpath("//div[2]/div/div[2]/div[2]/div/div/div[1]");
     private final By bathsLabelFields = By.xpath("//div[2]/div/div[2]/div[2]/div/div/div[2]");
@@ -35,6 +34,8 @@ public class ResultsPage {
         CustomMethods.waitForUrlToChange(driver);
         return this;
     }
+
+    @Step
     public List<List<Integer>> checkPriceRelatedFiltersApplied(){
        List<List<Integer>> allPriceFiltersList = new ArrayList<>();
        allPriceFiltersList.add(checkPriceFilterApplied());
@@ -44,6 +45,7 @@ public class ResultsPage {
        return allPriceFiltersList;
     }
 
+    @Step
     public List<List<String>> checkBedsBathsFilterApplied(){
         List<List<String>> bedsAndBathsArrayList = new ArrayList<>();
         bedsAndBathsArrayList.add(checkBedsFilterApplied());
@@ -51,22 +53,29 @@ public class ResultsPage {
         return bedsAndBathsArrayList;
     }
 
+    @Step
     public List<String> checkBedsFilterApplied(){
-        return checkEveryResultFilterApplied(driver, bedsLabelFields);
+        return checkEveryStrResultFilterApplied(driver, bedsLabelFields);
     }
 
+    @Step
     public List<String> checkBathsFilterApplied(){
-        return checkEveryResultFilterApplied(driver, bathsLabelFields);
+        return checkEveryStrResultFilterApplied(driver, bathsLabelFields);
     }
 
+    @Step
     public List<Integer> checkInstallmentFilterApplied() {
         return checkCurrencyRelatedFiltersApplied(driver, installmentLabelFields, " Monthly / 9 years");
 
     }
+
+    @Step
     public List<Integer> checkDownPaymentFilterApplied(){
         return checkCurrencyRelatedFiltersApplied(driver, downPaymentLabelFields, "EGP");
 
     }
+
+    @Step
     public List<Integer> checkPriceFilterApplied(){
       return checkCurrencyRelatedFiltersApplied(driver, priceLabelFields, "EGP");
 
@@ -77,7 +86,7 @@ public class ResultsPage {
     private List<Integer> checkCurrencyRelatedFiltersApplied(WebDriver driver, By locator, String toBeRemoved){
         Pattern pattern = Pattern.compile("\\b(\\d{1,3}(?:,\\d{3})*(?:\\.\\d+)?)\\b");
         Matcher matcher;
-        List<String> oldPricesList = checkEveryResultFilterApplied(driver, locator);
+        List<String> oldPricesList = checkEveryStrResultFilterApplied(driver, locator);
         List<Integer> newPricesList = new ArrayList<>();
         for(String priceList : oldPricesList) {
             String priceListNumber = priceList.replaceAll(toBeRemoved, "");
@@ -91,15 +100,27 @@ public class ResultsPage {
         return newPricesList;
     }
 
-    public List<String> checkAreaFilterApplied(){
-        return checkEveryResultFilterApplied(driver, areaLabelFields);
+    @Step
+    public List<Integer> checkAreaFilterApplied(){
+        return checkEveryIntResultFilterApplied(driver, areaLabelFields);
     }
 
     @Step
-    public List<String> checkTypeFilterApplied() { return checkEveryResultFilterApplied(driver, typeLabelFields);}
+    public List<String> checkTypeFilterApplied() { return checkEveryStrResultFilterApplied(driver, typeLabelFields);}
 
 
-    public List<String> checkEveryResultFilterApplied(WebDriver driver, By locator) {
+    public List<Integer> checkEveryIntResultFilterApplied(WebDriver driver, By locator) {
+
+        List<WebElement> webElementList = CustomMethods.findElementsPresence(driver, locator);
+        List<Integer> webElementsTextList = new ArrayList<>();
+        for (WebElement webElement : webElementList) {
+            webElementsTextList.add(Integer.parseInt(webElement.getText()));
+        }
+
+        return webElementsTextList;
+    }
+
+    public List<String> checkEveryStrResultFilterApplied(WebDriver driver, By locator) {
 
         List<WebElement> webElementList = CustomMethods.findElementsPresence(driver, locator);
         List<String> webElementsTextList = new ArrayList<>();

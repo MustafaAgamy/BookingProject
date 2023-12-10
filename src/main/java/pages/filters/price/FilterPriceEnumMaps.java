@@ -26,6 +26,7 @@ public class FilterPriceEnumMaps {
                     for (int j = i + 1; j < values().length; j++) {
                         PRICES_TO_MAP.put(values()[j], toIndex++);
                     }
+                    break;
                 }
             }
         }
@@ -45,6 +46,7 @@ public class FilterPriceEnumMaps {
                     for (int j = i + 1; j < values().length; j++) {
                         DOWN_PAYMENT_TO_MAP.put(values()[j], toIndex++);
                     }
+                    break;
                 }
             }
         }
@@ -71,6 +73,7 @@ public class FilterPriceEnumMaps {
                     for (int j = i + 1; j < values().length; j++) {
                         INSTALLMENT_TO_MAP.put(values()[j], toIndex++);
                     }
+                    break;
                 }
             }
         }

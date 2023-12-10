@@ -22,8 +22,8 @@ public class TestTypeAreaBedsBathsPriceFilters extends TestBase{
                 .setMinAndMaxAreaAndApply("200","500")
                 .waitForUrlToChange()
                 .checkAreaFilterApplied().parallelStream()
-                .forEach(areaFilter -> Assert.assertTrue(200 <= Integer.parseInt(areaFilter.substring(0, 3))
-                        && Integer.parseInt(areaFilter.substring(0, 3)) <= 500,
+                .forEach(areaFilter -> Assert.assertTrue(200 <= areaFilter
+                        && areaFilter <= 500,
                         "Expected 'Area to be in between 200 & 500', but found : " + areaFilter));
 
         homePage.clickDiscoverBtn()

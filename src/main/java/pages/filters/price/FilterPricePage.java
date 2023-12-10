@@ -32,21 +32,6 @@ public class FilterPricePage {
         return new ResultsPage(driver);
     }
 
-    private FilterPricePage pickPriceField(String fieldName){
-
-        switch (fieldName.toLowerCase()) {
-            case "from" -> pickPriceField(0);
-            case "to" -> pickPriceField(1);
-
-        }
-        return this;
-    }
-
-    private FilterPricePage pickPriceField(int fieldIndex){
-        CustomMethods.findDuplicationIndex(driver, FromAndToFields, fieldIndex).click();
-        return this;
-    }
-
     public FilterPricePage clickDownPayment(){
         CustomMethods.findElementPresence(driver, downPaymentBtn).click();
 
@@ -128,6 +113,21 @@ public class FilterPricePage {
         pickPriceField("to");
         pickRangeOption(toValue);
 
+        return this;
+    }
+
+    private FilterPricePage pickPriceField(String fieldName){
+
+        switch (fieldName.toLowerCase()) {
+            case "from" -> pickPriceField(0);
+            case "to" -> pickPriceField(1);
+
+        }
+        return this;
+    }
+
+    private FilterPricePage pickPriceField(int fieldIndex){
+        CustomMethods.findDuplicationIndex(driver, FromAndToFields, fieldIndex).click();
         return this;
     }
 

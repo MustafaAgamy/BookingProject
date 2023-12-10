@@ -14,7 +14,7 @@ public class PriceFiltrationTest extends TestBase{
 
        homePage.clickDiscoverBtn()
                .visitPriceFilter()
-               .setPriceFromToField(FilterPriceEnumMaps.PriceValue._1_MILLION, FilterPriceEnumMaps.PriceValue._25_MILLION)
+               .setPriceFromToField(FilterPriceEnumMaps.PriceValue._5_MILLION, FilterPriceEnumMaps.PriceValue._25_MILLION)
                .clickDownPayment()
                .setDownPaymentFromToField(FilterPriceEnumMaps.DownPaymentValue._100K, FilterPriceEnumMaps.DownPaymentValue._1M)
                .clickInstallments()
