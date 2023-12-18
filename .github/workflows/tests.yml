@@ -31,8 +31,5 @@ jobs:
     needs:
       - build
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-      
     - name: Run specific test
       run: mvn -B test -Dtest=SignInTest --file pom.xml
