@@ -34,4 +34,4 @@ jobs:
         maven-version: 3.9.5
     - name: run-specific-test
       continue-on-error: false
-      run: mvn -e test -Dtest="SingInTest"
+      run: mvn -e test -Dtest=SignInTest
