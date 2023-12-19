@@ -39,4 +39,4 @@ jobs:
     needs: build  # Ensure that the 'build' job is complete before running this job
     steps:
     - name: Run specific test
-      run: mvn -B test -Dtest=SignInTest --file pom.xml
+      run: mvn -B test -Dtest=SignInTest
