@@ -21,9 +21,7 @@ public class GenericProjectPage {
         this.driver = driver;
     }
 
-    private String getProjectTitle() {
-        return CustomMethods.findElementPresence(driver, projectTitle).getText();
-    }
+    private String getProjectTitle() { return CustomMethods.findElementPresence(driver, projectTitle).getText(); }
     private String getDeliveryInfo(){
         return  pickProjectInfoField(ProjectInfo.DELIVERY);
     }
@@ -33,16 +31,13 @@ public class GenericProjectPage {
     private String getMaintenanceFeesInfo(){
         return  pickProjectInfoField(ProjectInfo.MAINTENANCE_FEES);
     }
-
     private int getMinMonthlyPaymentPrice(){
         return  getPriceField(PaymentsValues.MONTHLY_PAYMENT);
     }
     private int getMinDownPaymentPrice(){
         return  getPriceField(PaymentsValues.DOWN_PAYMENT);
     }
-    private int getStartingFromPrice(){
-        return  getPriceField(PaymentsValues.STARTING_FROM);
-    }
+    private int getStartingFromPrice(){ return  getPriceField(PaymentsValues.STARTING_FROM); }
 
     private int getPriceField(PaymentsValues paymentsValues){
         Pattern pattern = Pattern.compile("\\b(\\d{1,3}(?:,\\d{3})*(?:\\.\\d+)?)\\b");

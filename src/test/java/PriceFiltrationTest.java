@@ -16,7 +16,7 @@ public class PriceFiltrationTest extends TestBase{
                .visitPriceFilter()
                .setPriceFromToField(FilterPriceEnumMaps.PriceValue._5_MILLION, FilterPriceEnumMaps.PriceValue._25_MILLION)
                .clickDownPayment()
-               .setDownPaymentFromToField(FilterPriceEnumMaps.DownPaymentValue._100K, FilterPriceEnumMaps.DownPaymentValue._1M)
+               .setDownPaymentFromToField(FilterPriceEnumMaps.DownPaymentValue._1_1M, FilterPriceEnumMaps.DownPaymentValue._2M)
                .clickInstallments()
                .setInstallmentFromToField(FilterPriceEnumMaps.InstallmentValue._30K, FilterPriceEnumMaps.InstallmentValue._50K)
                .applyFilter()

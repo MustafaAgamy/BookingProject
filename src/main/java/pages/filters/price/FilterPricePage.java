@@ -119,14 +119,14 @@ public class FilterPricePage {
     private FilterPricePage pickPriceField(String fieldName){
 
         switch (fieldName.toLowerCase()) {
-            case "from" -> pickPriceField(0);
-            case "to" -> pickPriceField(1);
+            case "from" -> clickPriceField(0);
+            case "to" -> clickPriceField(1);
 
         }
         return this;
     }
 
-    private FilterPricePage pickPriceField(int fieldIndex){
+    private FilterPricePage clickPriceField(int fieldIndex){
         CustomMethods.findDuplicationIndex(driver, FromAndToFields, fieldIndex).click();
         return this;
     }
