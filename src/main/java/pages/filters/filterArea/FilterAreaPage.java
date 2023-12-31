@@ -28,12 +28,11 @@ public class FilterAreaPage {
         return new FilterBedsBathsPage(driver);
     }
 
-    public ResultsPage setMinAndMaxAreaAndApply(String minAreaValue, String maxAreaValue) {
-         setMinAreaField(minAreaValue)
-        .setMaxAreaField(maxAreaValue)
-        .applyFilter();
+    public FilterAreaPage setMinAndMaxAreaAndApply(int minAreaValue, int maxAreaValue) {
+         setMinAreaField(String.valueOf(minAreaValue));
+         setMaxAreaField(String.valueOf(maxAreaValue));
 
-        return new ResultsPage(driver);
+        return this;
     }
     public FilterAreaPage setMinAreaField(String minAreaValue) {
         pickAreaFilterOption(AreaFields.MIN, minAreaValue);

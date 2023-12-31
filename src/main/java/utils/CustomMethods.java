@@ -12,6 +12,9 @@ import java.util.Set;
 
 public class CustomMethods {
 
+    public static Boolean Test(WebDriver driver , By by){
+        return wait(driver,50).until(ExpectedConditions.not(ExpectedConditions.visibilityOfAllElementsLocatedBy(by)));
+    }
     public static List<WebElement> findElementsPresence(WebDriver driver , By by){
         return wait(driver,50).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
     }
@@ -19,7 +22,9 @@ public class CustomMethods {
     public static WebElement findElementPresence(WebDriver driver , By by){
         return wait(driver,50).until(ExpectedConditions.presenceOfElementLocated(by));
     }
-
+    public static WebElement findElementVisible(WebDriver driver , By by){
+        return wait(driver,50).until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
     public static boolean waitForUrlNotToBe(WebDriver driver , String url){
         return wait(driver,120).until(ExpectedConditions.not(ExpectedConditions.urlToBe(url)));
     }
@@ -31,6 +36,10 @@ public class CustomMethods {
     public static boolean waitForUrlToChange(WebDriver driver){
         String currentUrl = driver.getCurrentUrl();
        return waitForUrlNotToBe(driver, currentUrl);
+    }
+    public static boolean waitForUrlNotToChange(WebDriver driver){
+        String currentUrl = driver.getCurrentUrl();
+        return waitForUrlToBe(driver, currentUrl);
     }
     public static WebElement findDuplicationIndex(WebDriver driver, By locator, int elementIndex) {
             wait(driver, 50).until(ExpectedConditions

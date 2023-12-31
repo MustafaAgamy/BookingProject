@@ -28,7 +28,8 @@ public class SignInPage {
 
     @Step
     public String getSuccessfulLoginMsg(){
-
+        //This only needed element to be visilbe to work
+//        return CustomMethods.findElementVisible(driver, successfulLoginMsg).getText();
         return CustomMethods.waitForElementTextToLoad(driver, successfulLoginMsg).getText();
     }
 }

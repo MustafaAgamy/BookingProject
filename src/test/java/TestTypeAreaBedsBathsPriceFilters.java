@@ -19,7 +19,8 @@ public class TestTypeAreaBedsBathsPriceFilters extends TestBase{
 
         homePage.clickDiscoverBtn()
                 .visitAreaFilter()
-                .setMinAndMaxAreaAndApply("200","500")
+                .setMinAndMaxAreaAndApply(200,500)
+                .applyFilter()
                 .waitForUrlToChange()
                 .checkAreaFilterApplied().parallelStream()
                 .forEach(areaFilter -> Assert.assertTrue(200 <= areaFilter
@@ -62,7 +63,8 @@ public class TestTypeAreaBedsBathsPriceFilters extends TestBase{
                 .pickRoomsNumber(2).pickBathsNumber(2)
                 .and()
                 .visitAreaFilter()
-                .setMinAndMaxAreaAndApply("200","500")
+                .setMinAndMaxAreaAndApply(200,500)
+                .applyFilter()
                 .waitForUrlToChange();
     }
 }

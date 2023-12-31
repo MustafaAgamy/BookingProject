@@ -23,7 +23,8 @@ public class AreaAndTypeFiltrationTest extends TestBase{
                         ,"Expected 'Serviced Apartment OR duplex', but found: " + resultText));
         new DiscoverPage(driver)
                 .visitAreaFilter()
-                .setMinAndMaxAreaAndApply("200","500")
+                .setMinAndMaxAreaAndApply(200,500)
+                .applyFilter()
                 .waitForUrlToChange()
                 .checkAreaFilterApplied()
                 .parallelStream().forEach(resultText -> Assert.assertTrue( 200 <= resultText

@@ -6,7 +6,8 @@ public class AreaFiltrationTest extends TestBase{
     @Test
     public void testOfAreaFilter() {
         homePage.clickDiscoverBtn().visitAreaFilter()
-                .setMinAndMaxAreaAndApply("200","500")
+                .setMinAndMaxAreaAndApply(200,500)
+                .applyFilter()
                 .waitForUrlToChange()
                 .checkAreaFilterApplied()
                 .parallelStream().forEach(resultText -> Assert.assertTrue( 200 <= resultText
@@ -17,7 +18,8 @@ public class AreaFiltrationTest extends TestBase{
     @Test
     public void testofFilters() {
         homePage.clickDiscoverBtn().visitAreaFilter()
-                .setMinAndMaxAreaAndApply("200","500")
+                .setMinAndMaxAreaAndApply(200,500)
+                .applyFilter()
                 .waitForUrlToChange()
                 .checkPriceFilterApplied()
                 .parallelStream().forEach(resultText ->

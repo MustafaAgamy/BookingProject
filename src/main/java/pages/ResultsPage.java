@@ -34,6 +34,10 @@ public class ResultsPage {
         CustomMethods.waitForUrlToChange(driver);
         return this;
     }
+    public ResultsPage waitForUrlNotToChange(){
+        CustomMethods.waitForUrlNotToChange(driver);
+        return this;
+    }
 
     @Step
     public List<List<Integer>> checkPriceRelatedFiltersApplied(){
