@@ -84,8 +84,7 @@ pipeline {
         }
     }
     post {
-        steps{
-            always {
+        always {
 //            stage('Mail Distribution') {
 //                steps {
                     script {
@@ -108,7 +107,7 @@ pipeline {
                             echo "File doesn't exist at: ${allureAttachment},${testNGAttachment}"
                         }
                     }
-                }
+//                }
 //            }
         }
     }
