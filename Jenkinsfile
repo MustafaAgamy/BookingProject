@@ -86,8 +86,8 @@ pipeline {
     post {
         always {
 //            stage('Mail Distribution') {
-//                steps {
-//                    script {
+                steps {
+                    script {
                         echo "Starting 'Mail Distribution' Stage!!"
                         bat "C:/Users/Agami/scoop/apps/allure/2.25.0/bin/allure.bat generate --single-file allure-results --clean"
                         def allureAttachment = "${ALLURE_REPORT}"
@@ -106,8 +106,8 @@ pipeline {
                         } else {
                             echo "File doesn't exist at: ${allureAttachment},${testNGAttachment}"
                         }
-//                    }
-//                }
+                    }
+                }
 //            }
         }
     }
